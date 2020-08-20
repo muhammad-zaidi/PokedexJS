@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/muhammad-zaidi/PokedexJS/issues"
   },
-  "homepage": "https://github.com/muhammad-zaidi/PokedexJS#readme"
+  "homepage": "https://github.com/muhammad-zaidi/PokedexJS#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "axios": "^0.19.2",
+    "react-router-dom": "^5.2.0"
+  }
 }
