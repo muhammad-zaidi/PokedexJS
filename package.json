@@ -1,0 +1,19 @@
+{
+  "name": "pokedexjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muhammad-zaidi/PokedexJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muhammad-zaidi/PokedexJS/issues"
+  },
+  "homepage": "https://github.com/muhammad-zaidi/PokedexJS#readme"
+}
