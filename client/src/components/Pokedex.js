@@ -56,8 +56,8 @@ export const Pokedex = (props) => {
   }, []);
 
   const getPokemonCard = (pokemonId) => {
-    const { id, name } = pokemonData[`${pokemonId}`];
-    const sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    const { id, name, sprite } = pokemonData[pokemonId];
+
     console.log(pokemonData[`${pokemonId}`]);
     return (
       <Grid item xs={4} key={pokemonId}>
