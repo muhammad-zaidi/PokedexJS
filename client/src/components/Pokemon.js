@@ -36,7 +36,10 @@ export const Pokemon = (props) => {
       <>
         <Typography variant='h1'>
           {`${id}.`} {toFirstCharUppercase(name)}
-          <img src={front_default} />
+          <img
+            style={{ width: '100px', height: '100px' }}
+            src={front_default}
+          />
         </Typography>
         <img style={{ width: '300px', height: '300px' }} src={fullImageUrl} />
         <Typography variant='h2'>Pokemon Info</Typography>
@@ -46,7 +49,7 @@ export const Pokemon = (props) => {
         </Typography>
         <Typography variant='h5'>Height: {height} </Typography>
         <Typography variant='h5'>Weight: {weight} </Typography>
-        <Typography variant='h2'> Types:</Typography>
+        <Typography variant='h2'> Type(s):</Typography>
         {types.map((typeInfo) => {
           const { type } = typeInfo;
           const { name } = type;

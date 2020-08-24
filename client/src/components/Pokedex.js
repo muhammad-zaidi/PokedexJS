@@ -8,12 +8,17 @@ import {
   CircularProgress,
   CardMedia,
   Typography,
+  TextField,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, fade } from '@material-ui/core/styles';
 import mockData from '../mockData';
 import axios from 'axios';
+import SearchIcon from '@material-ui/icons/Search';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  appContainer: {
+    color: 'red',
+  },
   pokedexContainer: {
     paddingTop: '20px',
     paddingLeft: '50px',
@@ -25,7 +30,23 @@ const useStyles = makeStyles({
   cardContent: {
     textAlign: 'center',
   },
-});
+  searchContainer: {
+    display: 'flex',
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    paddingLeft: '20px',
+    paddingRight: '20px',
+    marginTop: '5px',
+    marginBottom: '5px',
+  },
+  searchIcon: {
+    alignSelf: 'flex-end',
+    marginBottom: '5px',
+  },
+  searchInput: {
+    width: '200px',
+    margin: '5px',
+  },
+}));
 
 const toFirstCharUppercase = (name) =>
   name.charAt(0).toUpperCase() + name.slice(1);
@@ -34,6 +55,7 @@ export const Pokedex = (props) => {
   const { history } = props;
   const classes = useStyles();
   const [pokemonData, setPokemonData] = useState({});
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     axios
@@ -55,6 +77,10 @@ export const Pokedex = (props) => {
       });
   }, []);
 
+  const handleSearchChange = (e) => {
+    setFilter(e.target.value);
+  };
+
   const getPokemonCard = (pokemonId) => {
     const { id, name, sprite } = pokemonData[pokemonId];
 
@@ -65,7 +91,7 @@ export const Pokedex = (props) => {
           <CardMedia
             className={classes.cardMedia}
             image={sprite}
-            style={{ width: '130px', height: '130px' }}
+            style={{ width: '200px', height: '200px' }}
           />
           <CardContent className={classes.cardContent}>
             <Typography>{`${id}. ${toFirstCharUppercase(name)}`}</Typography>
@@ -78,12 +104,24 @@ export const Pokedex = (props) => {
   return (
     <>
       <AppBar position='static'>
-        <Toolbar />
+        <Toolbar classname={classes.appContainer}>
+          <div className={classes.searchContainer}>
+            <SearchIcon className={classes.searchIcon} />
+            <TextField
+              className={classes.searchInput}
+              onChange={handleSearchChange}
+              label='Pokemon'
+              variant='standard'
+            />
+          </div>
+        </Toolbar>
       </AppBar>
       {pokemonData ? (
         <Grid container spacing={2} className={classes.pokedexContainer}>
-          {Object.keys(pokemonData).map((pokemonId) =>
-            getPokemonCard(pokemonId)
+          {Object.keys(pokemonData).map(
+            (pokemonId) =>
+              pokemonData[pokemonId].name.includes(filter) &&
+              getPokemonCard(pokemonId)
           )}
         </Grid>
       ) : (
